@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class MiniGameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static MiniGameManager Instance;
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartMiniGame(string sceneName)
     {
-        
+
+    }
+
+    public void ExitMiniGame()
+    {
+
     }
 }

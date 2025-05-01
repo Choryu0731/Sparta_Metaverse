@@ -4,5 +4,16 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    
+    public Transform target;
+    float offsetX;
+
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+
+    }
 }

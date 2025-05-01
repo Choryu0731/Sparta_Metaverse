@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class InteractionTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Interact()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("상호작용 발생");
     }
 }

@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class MiniGameTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string miniGameScene;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if(collision.CompareTag("Player"))
+        {
+            MiniGameManager.Instance.StartMiniGame(miniGameScene);
+        }
     }
 }
