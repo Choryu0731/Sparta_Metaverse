@@ -21,7 +21,7 @@ public class NPC : MonoBehaviour
         switch(npcType)
         {
             case NPCType.MiniGame1:
-                MiniGameManager.Instance.StartMiniGame("MiniGame_FlappyBird");
+                MiniGameManager.Instance.StartMiniGame("MiniGame_FlappyPlane");
                 break;
 
             case NPCType.MiniGame2:

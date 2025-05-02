@@ -7,7 +7,7 @@ public class MiniGameManager : MonoBehaviour
 {
     public static MiniGameManager Instance;
 
-    private string miniGameScene = "MiniGame_FlappyBird";
+    private string miniGameScene = "MiniGame_FlappyPlane";
 
     private void Awake()
     {
