@@ -13,9 +13,16 @@ public class InteractionTrigger : MonoBehaviour
 
     public void Trigger()
     {
+        Debug.Log($"[InteractionTrigger] {gameObject.name}와 상호작용 시도");
+
         if (npc != null)
         {
+            Debug.Log("상호작용 실행");
             npc.Interact();
+        }
+        else
+        {
+            Debug.Log("npc 스크립트가 없음");
         }
     }
 }
