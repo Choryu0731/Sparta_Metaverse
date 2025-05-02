@@ -9,12 +9,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer characterRenderer; // 좌우 반전에 이용
     [SerializeField] private float moveSpeed = 5f; // 이동 속도
 
+    protected AnimationHandler animationHandler;
+
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
 
     protected void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        animationHandler = GetComponent<AnimationHandler>();
     }
 
     protected void Start()
@@ -48,7 +51,16 @@ public class PlayerController : MonoBehaviour
 
     private void Movement (Vector2 direction)
     {
-        _rigidbody.velocity = direction * moveSpeed;
+        if (direction != Vector2.zero)
+        {
+            _rigidbody.velocity = direction * moveSpeed;
+            animationHandler.Move(direction);
+        }
+        else
+        {
+            _rigidbody.velocity = Vector2.zero;
+            animationHandler.Move(Vector2.zero);
+        }
     }
 
     private void Rotate(Vector2 direction)
