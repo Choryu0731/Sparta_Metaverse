@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void OpneLeaderboard()
+    public void OpenLeaderboard()
     {
 
     }
