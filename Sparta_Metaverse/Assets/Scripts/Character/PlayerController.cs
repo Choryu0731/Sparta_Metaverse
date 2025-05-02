@@ -73,6 +73,16 @@ public class PlayerController : MonoBehaviour
 
     private void TryInteract()
     {
-        //InteractionTrigger와 연동할 예정
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f);
+
+        foreach (var hit in hits)
+        {
+            InteractionTrigger trigger = hit.GetComponent<InteractionTrigger>();
+            if (trigger != null)
+            {
+                trigger.Trigger();
+                break;
+            }
+        }
     }
 }

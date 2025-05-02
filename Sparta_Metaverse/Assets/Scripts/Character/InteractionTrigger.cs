@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class InteractionTrigger : MonoBehaviour
 {
-    public void Interact()
+    private NPC npc;
+
+    private void Awake()
     {
-        Debug.Log("상호작용 발생");
+        npc = GetComponent<NPC>();
+    }
+
+    public void Trigger()
+    {
+        if (npc != null)
+        {
+            npc.Interact();
+        }
     }
 }

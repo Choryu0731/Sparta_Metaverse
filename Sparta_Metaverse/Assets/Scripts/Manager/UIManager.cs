@@ -5,6 +5,33 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void OpenVehicleUI()
+    {
+
+    }
+
+    public void OpenCustomizeUI()
+    {
+
+    }
+
+    public void OpneLeaderboard()
+    {
+
+    }
+
+    public void OpenMapGuide(string message)
+    {
+        Debug.Log(message);
+    }
+
     public Text scoreText;
     private void Start()
     {
