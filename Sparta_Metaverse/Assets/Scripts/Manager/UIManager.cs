@@ -36,5 +36,10 @@ public class UIManager : MonoBehaviour
         Debug.Log(message);
     }
 
+    public void OpenMiniGameConfirmUI()
+    {
+
+    }
+
     
 }
