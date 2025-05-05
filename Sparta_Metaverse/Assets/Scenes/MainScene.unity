@@ -3862,8 +3862,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 2
-  dialoguePanel: {fileID: 1043077264}
+  dialogueManager: {fileID: 1043077268}
   playerController: {fileID: 2056306389}
+  dialogue: []
 --- !u!61 &121570854
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4011,8 +4012,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 4
-  dialoguePanel: {fileID: 1043077264}
+  dialogueManager: {fileID: 1043077268}
   playerController: {fileID: 2056306389}
+  dialogue: []
 --- !u!61 &140046485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4160,8 +4162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 1
-  dialoguePanel: {fileID: 1043077264}
+  dialogueManager: {fileID: 1043077268}
   playerController: {fileID: 2056306389}
+  dialogue: []
 --- !u!61 &155704882
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6955,7 +6958,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 909022230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5fccd6732c9446bbbc90cfa2c9862, type: 3}
+  m_Script: {fileID: 11500000, guid: beb20225a2b40f74bb17ec4122951bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &910886691
@@ -7150,7 +7153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1043077265
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7525,8 +7528,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 0
-  dialoguePanel: {fileID: 1043077264}
+  dialogueManager: {fileID: 1043077268}
   playerController: {fileID: 2056306389}
+  dialogue: []
 --- !u!61 &1532902686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12932,8 +12936,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 5
-  dialoguePanel: {fileID: 1043077264}
+  dialogueManager: {fileID: 1043077268}
   playerController: {fileID: 2056306389}
+  dialogue: []
 --- !u!61 &1674689453
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13165,8 +13170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 3
-  dialoguePanel: {fileID: 1043077264}
+  dialogueManager: {fileID: 1043077268}
   playerController: {fileID: 2056306389}
+  dialogue: []
 --- !u!61 &1888470459
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13268,6 +13274,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3000
+--- !u!1 &1898495416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1898495418}
+  - component: {fileID: 1898495417}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1898495417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898495416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683a04ce65ac89341bfa9aac80dd71bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1898495418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898495416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1991688388
 GameObject:
   m_ObjectHideFlags: 0
@@ -13638,3 +13688,4 @@ SceneRoots:
   - {fileID: 2064533502}
   - {fileID: 988845880}
   - {fileID: 909022232}
+  - {fileID: 1898495418}

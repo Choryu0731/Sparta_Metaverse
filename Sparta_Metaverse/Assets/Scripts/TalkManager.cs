@@ -19,6 +19,6 @@ public class TalkManager : MonoBehaviour
 
     public string GetTalk(int id, int talkIndex)
     {
-
+        return talkData[id][talkIndex];
     }
 }
