@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.SetActive(false); // 초기 상태 비활성화
+        
     }
 
     public void Action(GameObject scanObj)
