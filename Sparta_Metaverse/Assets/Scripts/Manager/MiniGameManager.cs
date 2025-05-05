@@ -7,24 +7,32 @@ public class MiniGameManager : MonoBehaviour
 {
     public static MiniGameManager Instance;
 
-    private string miniGameScene = "MiniGame_FlappyPlane";
+    private string currentMiniGameScene = "";
+    private GameObject[] mainSceneObjects;
 
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
     }
 
     public void StartMiniGame(string sceneName)
     {
+        currentMiniGameScene = sceneName;
         SceneManager.LoadScene(sceneName);
     }
 
     public void ExitMiniGame(int score)
     {
         ScoreManager.Instance.SaveScore(score);
-        SceneManager.UnloadSceneAsync(miniGameScene);
+
+        currentMiniGameScene = "";
+
+        SceneManager.LoadScene("MainScene");
+        Time.timeScale = 1.0f;
     }
 }

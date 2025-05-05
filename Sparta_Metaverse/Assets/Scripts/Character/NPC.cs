@@ -15,10 +15,20 @@ public enum NPCType
 public class NPC : MonoBehaviour
 {
     public NPCType npcType;
+    private bool isInteracting = false;
 
     public void Interact()
     {
-        switch(npcType)
+        if (isInteracting) return;
+        isInteracting = true;
+
+        StartCoroutine(HandleInteraction());
+        Debug.Log("NPC와 상호작용 시작: " + npcType);
+    }
+
+    private IEnumerator HandleInteraction()
+    {
+        switch (npcType)
         {
             case NPCType.MiniGame1:
                 MiniGameManager.Instance.StartMiniGame("MiniGame_FlappyPlane");
@@ -44,5 +54,8 @@ public class NPC : MonoBehaviour
                 UIManager.Instance.OpenMapGuide("스파르타 메타버스에 오신걸 환영합니다!");
                 break;
         }
+
+        yield return new WaitForSeconds(0.5f);
+        isInteracting = false;
     }
 }

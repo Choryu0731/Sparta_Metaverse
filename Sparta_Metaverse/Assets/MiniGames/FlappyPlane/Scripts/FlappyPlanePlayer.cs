@@ -40,11 +40,7 @@ public class FlappyPlanePlayer : MonoBehaviour
         {
             if (deathCooldown <= 0)
             {
-                // 게임 재시작
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
-                {
-                    FlappyPlanegameManager.RestartGame();
-                }
+                
             }
             else
             {
