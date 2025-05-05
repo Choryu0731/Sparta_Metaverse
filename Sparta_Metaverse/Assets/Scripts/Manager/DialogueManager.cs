@@ -8,9 +8,21 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI talkText;
     public GameObject scanObject;
 
+    private void Awake()
+    {
+        gameObject.SetActive(false); // 초기 상태 비활성화
+    }
+
     public void Action(GameObject scanObj)
     {
         scanObject = scanObj;
-        talkText.text = "이것의 이름은 " + scanObj.name +"이라고 한다.";
+        if (talkText != null && scanObj != null)
+        {
+            talkText.text = "이것의 이름은 " + scanObj.name + "이라고 한다.";
+        }
+        else
+        {
+            Debug.LogWarning("Talk Text 또는 Scan Object가 null입니다.");
+        }
     }
 }

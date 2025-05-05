@@ -13,6 +13,9 @@ public class InteractionTrigger : MonoBehaviour
 
     public void Trigger()
     {
-        npc.Interact();
+        if (npc != null)
+        {
+            npc.Interact();
+        }
     }
 }

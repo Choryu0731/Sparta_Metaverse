@@ -8,15 +8,14 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private SpriteRenderer characterRenderer; // 좌우 반전에 이용
     [SerializeField] private float moveSpeed = 5f; // 이동 속도
+    [SerializeField] private float interactionRadius = 1f;
+    [SerializeField] private LayerMask interactableLayer;
+    public GameObject ScanObject { get; private set; }
 
     protected AnimationHandler animationHandler;
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
-
-    [SerializeField] private float interactionRadius = 1f;
-    [SerializeField] private LayerMask interactableLayer;
-    public GameObject ScanObject { get; private set; }
 
     protected void Awake()
     {
@@ -26,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     protected void Start()
     {
-        
+
     }
 
     protected void Update()
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
         HandleAction();
         Rotate(movementDirection);
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             TryInteract();
         }
@@ -53,7 +52,7 @@ public class PlayerController : MonoBehaviour
         movementDirection = new Vector2(horizontal, vertical).normalized; // 방향 벡터 정규화(대각선 이동 시 속도 보정)
     }
 
-    private void Movement (Vector2 direction)
+    private void Movement(Vector2 direction)
     {
         if (direction != Vector2.zero)
         {
@@ -79,7 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, interactionRadius, interactableLayer);
         ScanObject = null;
-        
+
         GameObject closestInteractable = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
@@ -91,7 +90,7 @@ public class PlayerController : MonoBehaviour
             {
                 Vector3 directionToTarget = hit.transform.position - currentPosition;
                 float dSqr = directionToTarget.sqrMagnitude;
-                if(dSqr < closestDistanceSqr)
+                if (dSqr < closestDistanceSqr)
                 {
                     closestDistanceSqr = dSqr;
                     closestInteractable = hit.gameObject;
@@ -99,10 +98,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(closestInteractable != null)
+        if (closestInteractable != null)
         {
             ScanObject = closestInteractable;
-
             closestInteractable.GetComponent<InteractionTrigger>()?.Trigger();
         }
     }

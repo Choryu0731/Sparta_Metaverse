@@ -3829,7 +3829,6 @@ GameObject:
   - component: {fileID: 121570854}
   - component: {fileID: 121570853}
   - component: {fileID: 121570852}
-  - component: {fileID: 121570857}
   m_Layer: 7
   m_Name: VeihcleChangeNPC
   m_TagString: Untagged
@@ -3862,7 +3861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 2
-  dialogueManager: {fileID: 1850901932}
+  dialoguePanel: {fileID: 1043077264}
   playerController: {fileID: 2056306389}
 --- !u!61 &121570854
 BoxCollider2D:
@@ -3952,20 +3951,6 @@ Transform:
   - {fileID: 1067216570}
   m_Father: {fileID: 259820594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &121570857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121570851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe962b7135b55b44282fe935da935bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkText: {fileID: 0}
-  scanObject: {fileID: 0}
 --- !u!1 &140046482
 GameObject:
   m_ObjectHideFlags: 0
@@ -3979,7 +3964,6 @@ GameObject:
   - component: {fileID: 140046485}
   - component: {fileID: 140046484}
   - component: {fileID: 140046483}
-  - component: {fileID: 140046488}
   m_Layer: 7
   m_Name: LeaderbordNPC
   m_TagString: Untagged
@@ -4012,7 +3996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 4
-  dialogueManager: {fileID: 1850901932}
+  dialoguePanel: {fileID: 1043077264}
   playerController: {fileID: 2056306389}
 --- !u!61 &140046485
 BoxCollider2D:
@@ -4102,20 +4086,6 @@ Transform:
   - {fileID: 1776155738}
   m_Father: {fileID: 259820594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &140046488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140046482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe962b7135b55b44282fe935da935bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkText: {fileID: 0}
-  scanObject: {fileID: 0}
 --- !u!1 &155704879
 GameObject:
   m_ObjectHideFlags: 0
@@ -4129,7 +4099,6 @@ GameObject:
   - component: {fileID: 155704882}
   - component: {fileID: 155704881}
   - component: {fileID: 155704880}
-  - component: {fileID: 155704885}
   m_Layer: 7
   m_Name: MiniGame2NPC
   m_TagString: Untagged
@@ -4162,7 +4131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 1
-  dialogueManager: {fileID: 1850901932}
+  dialoguePanel: {fileID: 1043077264}
   playerController: {fileID: 2056306389}
 --- !u!61 &155704882
 BoxCollider2D:
@@ -4252,20 +4221,6 @@ Transform:
   - {fileID: 1441955865}
   m_Father: {fileID: 259820594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &155704885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155704879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe962b7135b55b44282fe935da935bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkText: {fileID: 0}
-  scanObject: {fileID: 0}
 --- !u!1 &259820593
 GameObject:
   m_ObjectHideFlags: 0
@@ -7102,8 +7057,9 @@ GameObject:
   - component: {fileID: 1043077265}
   - component: {fileID: 1043077267}
   - component: {fileID: 1043077266}
+  - component: {fileID: 1043077268}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DialoguePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7167,6 +7123,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043077264}
   m_CullTransparentMesh: 1
+--- !u!114 &1043077268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043077264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe962b7135b55b44282fe935da935bce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkText: {fileID: 1579747832}
+  scanObject: {fileID: 0}
 --- !u!1 &1067216569
 GameObject:
   m_ObjectHideFlags: 0
@@ -7436,7 +7406,6 @@ GameObject:
   - component: {fileID: 1532902686}
   - component: {fileID: 1532902685}
   - component: {fileID: 1532902684}
-  - component: {fileID: 1532902689}
   m_Layer: 7
   m_Name: MiniGame1NPC
   m_TagString: Untagged
@@ -7469,7 +7438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 0
-  dialogueManager: {fileID: 1850901932}
+  dialoguePanel: {fileID: 1043077264}
   playerController: {fileID: 2056306389}
 --- !u!61 &1532902686
 BoxCollider2D:
@@ -7559,20 +7528,6 @@ Transform:
   - {fileID: 456029781}
   m_Father: {fileID: 259820594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1532902689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532902683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe962b7135b55b44282fe935da935bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkText: {fileID: 1579747832}
-  scanObject: {fileID: 0}
 --- !u!1 &1579747830
 GameObject:
   m_ObjectHideFlags: 0
@@ -12844,7 +12799,6 @@ GameObject:
   - component: {fileID: 1674689453}
   - component: {fileID: 1674689452}
   - component: {fileID: 1674689451}
-  - component: {fileID: 1674689456}
   m_Layer: 7
   m_Name: MapGuideNPC
   m_TagString: Untagged
@@ -12877,7 +12831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 5
-  dialogueManager: {fileID: 1850901932}
+  dialoguePanel: {fileID: 1043077264}
   playerController: {fileID: 2056306389}
 --- !u!61 &1674689453
 BoxCollider2D:
@@ -12967,20 +12921,6 @@ Transform:
   - {fileID: 537068303}
   m_Father: {fileID: 259820594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1674689456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674689450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe962b7135b55b44282fe935da935bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkText: {fileID: 0}
-  scanObject: {fileID: 0}
 --- !u!1 &1776155737
 GameObject:
   m_ObjectHideFlags: 0
@@ -13065,52 +13005,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1850901931
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1850901933}
-  - component: {fileID: 1850901932}
-  m_Layer: 0
-  m_Name: DialogueManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1850901932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850901931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe962b7135b55b44282fe935da935bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkText: {fileID: 1579747832}
-  scanObject: {fileID: 0}
---- !u!4 &1850901933
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850901931}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1888470456
 GameObject:
   m_ObjectHideFlags: 0
@@ -13124,7 +13018,6 @@ GameObject:
   - component: {fileID: 1888470459}
   - component: {fileID: 1888470458}
   - component: {fileID: 1888470457}
-  - component: {fileID: 1888470462}
   m_Layer: 7
   m_Name: CustomizingNPC
   m_TagString: Untagged
@@ -13157,7 +13050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcType: 3
-  dialogueManager: {fileID: 1850901932}
+  dialoguePanel: {fileID: 1043077264}
   playerController: {fileID: 2056306389}
 --- !u!61 &1888470459
 BoxCollider2D:
@@ -13247,20 +13140,6 @@ Transform:
   - {fileID: 1991688389}
   m_Father: {fileID: 259820594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1888470462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1888470456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe962b7135b55b44282fe935da935bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkText: {fileID: 0}
-  scanObject: {fileID: 0}
 --- !u!1 &1991688388
 GameObject:
   m_ObjectHideFlags: 0
@@ -13630,4 +13509,3 @@ SceneRoots:
   - {fileID: 879955921}
   - {fileID: 2064533502}
   - {fileID: 988845880}
-  - {fileID: 1850901933}
