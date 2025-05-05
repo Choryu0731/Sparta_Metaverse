@@ -17,6 +17,10 @@ public class NPC : MonoBehaviour
     public NPCType npcType;
     private bool isInteracting = false;
 
+    public DialogueManager dialogueManager;
+
+    public PlayerController playerController;
+
     public void Interact()
     {
         if (isInteracting) return;
@@ -31,7 +35,9 @@ public class NPC : MonoBehaviour
         switch (npcType)
         {
             case NPCType.MiniGame1:
-                MiniGameManager.Instance.StartMiniGame("MiniGame_FlappyPlane");
+                //MiniGameManager.Instance.StartMiniGame("MiniGame_FlappyPlane");
+                dialogueManager.scanObject = playerController.ScanObject;
+                dialogueManager.Action(playerController.ScanObject);
                 break;
 
             case NPCType.MiniGame2:

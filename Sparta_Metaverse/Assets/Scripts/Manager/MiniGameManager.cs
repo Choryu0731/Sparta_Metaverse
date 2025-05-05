@@ -8,7 +8,6 @@ public class MiniGameManager : MonoBehaviour
     public static MiniGameManager Instance;
 
     private string currentMiniGameScene = "";
-    private GameObject[] mainSceneObjects;
 
     private void Awake()
     {
@@ -28,7 +27,7 @@ public class MiniGameManager : MonoBehaviour
 
     public void ExitMiniGame(int score)
     {
-        ScoreManager.Instance.SaveScore(score);
+        ScoreManager.Instance.SaveHighScore(currentMiniGameScene, score);
 
         currentMiniGameScene = "";
 

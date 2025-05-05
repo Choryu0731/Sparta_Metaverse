@@ -9,9 +9,13 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            
+        }
     }
-
     public void OpenVehicleUI()
     {
 
@@ -32,10 +36,5 @@ public class UIManager : MonoBehaviour
         Debug.Log(message);
     }
 
-    public Text scoreText;
-    private void Start()
-    {
-        int score = ScoreManager.Instance.GetScore();
-        scoreText.text = $"Á¡¼ö : {score}";
-    }
+    
 }

@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
 
+    [SerializeField] private float interactionRadius = 1f;
+    [SerializeField] private LayerMask interactableLayer;
+    public GameObject ScanObject { get; private set; }
+
     protected void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -73,16 +77,33 @@ public class PlayerController : MonoBehaviour
 
     private void TryInteract()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, interactionRadius, interactableLayer);
+        ScanObject = null;
+        
+        GameObject closestInteractable = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
 
         foreach (var hit in hits)
         {
             InteractionTrigger trigger = hit.GetComponent<InteractionTrigger>();
             if (trigger != null)
             {
-                trigger.Trigger();
-                break;
+                Vector3 directionToTarget = hit.transform.position - currentPosition;
+                float dSqr = directionToTarget.sqrMagnitude;
+                if(dSqr < closestDistanceSqr)
+                {
+                    closestDistanceSqr = dSqr;
+                    closestInteractable = hit.gameObject;
+                }
             }
+        }
+
+        if(closestInteractable != null)
+        {
+            ScanObject = closestInteractable;
+
+            closestInteractable.GetComponent<InteractionTrigger>()?.Trigger();
         }
     }
 }
