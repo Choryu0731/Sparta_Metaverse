@@ -5,33 +5,40 @@ using UnityEngine.SceneManagement;
 
 public class MiniGameManager : MonoBehaviour
 {
-    public static MiniGameManager Instance;
+    public static MiniGameManager Instance { get; private set; }
 
-    private string currentMiniGameScene = "";
+    private string currentMiniGameScene;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject); // 씬 전환 시에도 유지
         }
-        else Destroy(gameObject);
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void StartMiniGame(string sceneName)
     {
+        Debug.Log($"MiniGameManager: Starting mini-game scene: {sceneName}");
         currentMiniGameScene = sceneName;
         SceneManager.LoadScene(sceneName);
     }
 
-    public void ExitMiniGame(int score)
+    public void EndMiniGame()
     {
-        ScoreManager.Instance.SaveHighScore(currentMiniGameScene, score);
+        Debug.Log("MiniGameManager: Ending current mini-game.");
+        string mainSceneName = "MainScene";
+        SceneManager.LoadScene(mainSceneName);
+        currentMiniGameScene = null;
+    }
 
-        currentMiniGameScene = "";
-
-        SceneManager.LoadScene("MainScene");
-        Time.timeScale = 1.0f;
+    public string GetCurrentMiniGameScene()
+    {
+        return currentMiniGameScene;
     }
 }

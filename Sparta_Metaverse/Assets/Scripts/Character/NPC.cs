@@ -24,19 +24,20 @@ public class NPC : MonoBehaviour
 {
     public NPCType npcType;
     private bool isInteracting = false;
-    private InteractionState currentState = InteractionState.UIOff; // 초기 상태는 UI Off
+    private enum InteractionStep { Dialogue, UIOn, UIOff }
+    private InteractionStep currentStep = InteractionStep.UIOff;
 
     public DialogueManager dialogueManager;
     public PlayerController playerController;
-    public string[] dialogue; // 각 NPC별 대사
-    public GameObject uiToShowOnDialogueEnd; // 대화 종료 후 표시할 UI (Inspector에서 연결)
+    public string[] dialogue;
+    public GameObject uiToShowOnDialogueEnd;
 
     public void Interact()
     {
         if (isInteracting) return;
         isInteracting = true;
 
-        if (currentState == InteractionState.UIOff)
+        if (currentStep == InteractionStep.UIOff)
         {
             // UI가 꺼진 상태 -> 대화창 켜기
             if (dialogueManager != null && playerController != null && playerController.ScanObject != null)
@@ -44,38 +45,47 @@ public class NPC : MonoBehaviour
                 dialogueManager.scanObject = playerController.ScanObject;
                 dialogueManager.StartDialogue(dialogue, () =>
                 {
-                    // 대화가 끝난 후 UI를 켜는 로직은 그대로 유지
-                    if (uiToShowOnDialogueEnd != null)
+                    // 대화 종료 후 UIOn 상태로 변경하고, npcType에 따라 미니게임 UI를 열거나 일반 UI를 켭니다.
+                    currentStep = InteractionStep.UIOn;
+                    if (npcType == NPCType.MiniGame1)
+                    {
+                        UIManager.Instance.OpenMiniGameConfirmUI("MiniGame_FlappyPlane");
+                    }
+                    else if (npcType == NPCType.MiniGame2)
+                    {
+                        UIManager.Instance.OpenMiniGameConfirmUI("MiniGame2Scene");
+                    }
+                    else if (uiToShowOnDialogueEnd != null)
                     {
                         uiToShowOnDialogueEnd.SetActive(true);
                     }
                 });
-                dialogueManager.SetDialogueFinishedCallback(() => currentState = InteractionState.UIOn); // 대화 종료 시 상태 변경 콜백 등록
                 dialogueManager.gameObject.SetActive(true);
-                currentState = InteractionState.Dialogue;
+                currentStep = InteractionStep.Dialogue;
             }
         }
-        else if (currentState == InteractionState.Dialogue)
+        else if (currentStep == InteractionStep.Dialogue)
         {
-            // 대화창이 켜진 상태 -> 대화창 끄기
+            // 대화창이 켜진 상태 -> 대화창 끄기, 다음 단계로
             if (dialogueManager != null && dialogueManager.gameObject.activeSelf)
             {
                 dialogueManager.gameObject.SetActive(false);
             }
-            currentState = InteractionState.UIOn; // 직접 UIOn 상태로 변경
-            if (uiToShowOnDialogueEnd != null && !uiToShowOnDialogueEnd.activeSelf)
+            currentStep = InteractionStep.UIOn;
+            // 대화 종료 시 미니게임 UI는 콜백에서 처리했으므로, 일반 UI만 처리합니다.
+            if (npcType != NPCType.MiniGame1 && npcType != NPCType.MiniGame2 && uiToShowOnDialogueEnd != null && !uiToShowOnDialogueEnd.activeSelf)
             {
                 uiToShowOnDialogueEnd.SetActive(true);
             }
         }
-        else if (currentState == InteractionState.UIOn)
+        else if (currentStep == InteractionStep.UIOn)
         {
-            // UI가 켜진 상태 -> UI 끄기
+            // UI가 켜진 상태 -> UI 끄기, 다음 단계로
             if (uiToShowOnDialogueEnd != null)
             {
                 uiToShowOnDialogueEnd.SetActive(false);
             }
-            currentState = InteractionState.UIOff;
+            currentStep = InteractionStep.UIOff;
         }
 
         StartCoroutine(ResetInteractionFlag());

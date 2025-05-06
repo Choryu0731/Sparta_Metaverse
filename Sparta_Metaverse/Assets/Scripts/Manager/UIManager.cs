@@ -79,10 +79,15 @@ public class UIManager : MonoBehaviour
     // Yes 버튼 클릭 시 미니게임 시작
     private void StartMiniGame()
     {
+        Debug.Log("StartMiniGame() 호출됨, sceneName: " + miniGameSceneName);
         if (!string.IsNullOrEmpty(miniGameSceneName))
         {
             MiniGameManager.Instance.StartMiniGame(miniGameSceneName);
             CloseMiniGameConfirmUI();
+        }
+        else
+        {
+            Debug.LogWarning("miniGameSceneName이 비어있습니다.");
         }
     }
 

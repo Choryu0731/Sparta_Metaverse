@@ -100,8 +100,13 @@ public class PlayerController : MonoBehaviour
 
         if (closestInteractable != null)
         {
+            Debug.Log("Closest interactable: " + closestInteractable.name);
             ScanObject = closestInteractable;
             closestInteractable.GetComponent<InteractionTrigger>()?.Trigger();
+        }
+        else
+        {
+            Debug.Log("No interactable object found.");
         }
     }
 }

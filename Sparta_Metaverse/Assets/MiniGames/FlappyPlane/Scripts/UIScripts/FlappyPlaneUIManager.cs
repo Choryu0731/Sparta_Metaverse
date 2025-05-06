@@ -62,7 +62,7 @@ public class FlappyPlaneUIManager : MonoBehaviour
 
     public void OnClickExit()
     {
-        MiniGameManager.Instance.ExitMiniGame(gameManager?.CurrentScore ?? 0); // 스코어 화면에서 종료 시 점수 전달
+        MiniGameManager.Instance.EndMiniGame(); // 스코어 화면에서 종료 시 점수 전달
     }
 
     public void OnClickRestart()
