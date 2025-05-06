@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum InteractionState
+{
+    Dialogue,
+    UIOn,
+    UIOff
+}
+
 public enum NPCType
 {
     MiniGame1,
@@ -17,65 +24,61 @@ public class NPC : MonoBehaviour
 {
     public NPCType npcType;
     private bool isInteracting = false;
-    private bool isDialogueActive = false;
+    private InteractionState currentState = InteractionState.UIOff; // 초기 상태는 UI Off
 
     public DialogueManager dialogueManager;
     public PlayerController playerController;
     public string[] dialogue; // 각 NPC별 대사
+    public GameObject uiToShowOnDialogueEnd; // 대화 종료 후 표시할 UI (Inspector에서 연결)
 
     public void Interact()
     {
         if (isInteracting) return;
         isInteracting = true;
 
-        if (isDialogueActive) // 대화창이 활성화되어 있다면 닫기
+        if (currentState == InteractionState.UIOff)
         {
+            // UI가 꺼진 상태 -> 대화창 켜기
+            if (dialogueManager != null && playerController != null && playerController.ScanObject != null)
+            {
+                dialogueManager.scanObject = playerController.ScanObject;
+                dialogueManager.StartDialogue(dialogue, () =>
+                {
+                    // 대화가 끝난 후 UI를 켜는 로직은 그대로 유지
+                    if (uiToShowOnDialogueEnd != null)
+                    {
+                        uiToShowOnDialogueEnd.SetActive(true);
+                    }
+                });
+                dialogueManager.SetDialogueFinishedCallback(() => currentState = InteractionState.UIOn); // 대화 종료 시 상태 변경 콜백 등록
+                dialogueManager.gameObject.SetActive(true);
+                currentState = InteractionState.Dialogue;
+            }
+        }
+        else if (currentState == InteractionState.Dialogue)
+        {
+            // 대화창이 켜진 상태 -> 대화창 끄기
             if (dialogueManager != null && dialogueManager.gameObject.activeSelf)
             {
                 dialogueManager.gameObject.SetActive(false);
             }
-            isDialogueActive = false;
-        }
-        else // 대화창이 비활성화되어 있다면 열기
-        {
-            if (dialogueManager != null && playerController != null && playerController.ScanObject != null)
+            currentState = InteractionState.UIOn; // 직접 UIOn 상태로 변경
+            if (uiToShowOnDialogueEnd != null && !uiToShowOnDialogueEnd.activeSelf)
             {
-                dialogueManager.scanObject =  playerController.ScanObject;
-                dialogueManager.StartDialogue(dialogue, () => OpenSpecificUI(npcType));
-                dialogueManager.gameObject.SetActive(true);
-                isDialogueActive = true;
+                uiToShowOnDialogueEnd.SetActive(true);
             }
+        }
+        else if (currentState == InteractionState.UIOn)
+        {
+            // UI가 켜진 상태 -> UI 끄기
+            if (uiToShowOnDialogueEnd != null)
+            {
+                uiToShowOnDialogueEnd.SetActive(false);
+            }
+            currentState = InteractionState.UIOff;
         }
 
         StartCoroutine(ResetInteractionFlag());
-    }
-
-    private void OpenSpecificUI(NPCType type)
-    {
-        switch (type)
-        {
-            case NPCType.MiniGame1:
-                MiniGameManager.Instance.StartMiniGame("MiniGame_FlappyPlane");
-                break;
-            case NPCType.MiniGame2:
-                MiniGameManager.Instance.StartMiniGame("MiniGame2Scene");
-                break;
-            case NPCType.VehicleChange:
-                UIManager.Instance.OpenVehicleUI();
-                break;
-            case NPCType.Customizing:
-                UIManager.Instance.OpenCustomizeUI();
-                break;
-            case NPCType.Leaderboard:
-                UIManager.Instance.OpenLeaderboard();
-                break;
-            case NPCType.MapGuide:
-                UIManager.Instance.OpenMapGuide("스파르타 메타버스에 오신걸 환영합니다!");
-                break;
-            case NPCType.Common:
-                // 공통 NPC는 특별한 UI를 열지 않을 수도 있습니다.
-                break;
-        }
     }
 
     private IEnumerator ResetInteractionFlag()

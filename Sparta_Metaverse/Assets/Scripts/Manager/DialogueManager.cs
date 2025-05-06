@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject scanObject;
     private Queue<string> dialogueLines;
     private Action onDialogueEnd;
+    private Action onDialogueFinished; // 대화가 완전히 종료되었음을 알리는 Action
 
     private void Awake()
     {
@@ -25,7 +26,13 @@ public class DialogueManager : MonoBehaviour
             dialogueLines.Enqueue(line);
         }
         onDialogueEnd = onEnd;
+        onDialogueFinished = null; // StartDialogue 시 콜백 초기화
         DisplayNextLine();
+    }
+
+    public void SetDialogueFinishedCallback(Action callback)
+    {
+        onDialogueFinished = callback;
     }
 
     public void DisplayNextLine()
@@ -44,5 +51,6 @@ public class DialogueManager : MonoBehaviour
     {
         gameObject.SetActive(false);
         onDialogueEnd?.Invoke();
+        onDialogueFinished?.Invoke(); // 대화 종료 콜백 실행
     }
 }
