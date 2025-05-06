@@ -32,7 +32,7 @@ public class FlappyPlaneGameManager : MonoBehaviour
         FlappyPlanegameManager = this;
         FlappyPlaneuiManager = FindObjectOfType<FlappyPlaneUIManager>();
 
-        highScore = PlayerPrefs.GetInt(HighScoreKey, 0);
+        highScore = ScoreManager.Instance.GetHighScore("MiniGame_FlappyPlane");
 
         Time.timeScale = initialTimeScale;
     }
@@ -71,12 +71,11 @@ public class FlappyPlaneGameManager : MonoBehaviour
         Debug.Log("Game Over");
         isGameStarted = false;
 
-        if (currentScore > highScore)
-        {
-            highScore = currentScore;
-            PlayerPrefs.SetInt(HighScoreKey, highScore);
-            PlayerPrefs.Save();
-        }
+        ScoreManager.Instance.SaveHighScore("MiniGame_FlappyPlane", currentScore);
+
+        highScore = ScoreManager.Instance.GetHighScore("MiniGame_FlappyPlane");
+
+        FlappyPlaneuiManager.SetScoreUI();
 
         FlappyPlaneuiManager.SetScoreUI();
     }
@@ -97,4 +96,5 @@ public class FlappyPlaneGameManager : MonoBehaviour
             FlappyPlaneuiManager.UpdateScore(currentScore);
         }
     }
+
 }

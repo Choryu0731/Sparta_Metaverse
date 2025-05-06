@@ -62,7 +62,8 @@ public class FlappyPlaneUIManager : MonoBehaviour
 
     public void OnClickExit()
     {
-        MiniGameManager.Instance.EndMiniGame(); // 스코어 화면에서 종료 시 점수 전달
+        int score = gameManager?.CurrentScore ?? 0;
+        MiniGameManager.Instance.EndMiniGame(score); // 스코어 화면에서 종료 시 점수 전달
     }
 
     public void OnClickRestart()
@@ -74,7 +75,12 @@ public class FlappyPlaneUIManager : MonoBehaviour
     public void SetScoreUI()
     {
         ChangeState(UIState.Score);
-        scoreUI?.UpdateScore(gameManager?.CurrentScore ?? 0, gameManager?.HighScore ?? 0); // 이번판 점수와 최고점수 전달
+        int currentScore = gameManager?.CurrentScore ?? 0;
+
+        ScoreManager.Instance.SaveHighScore("MiniGame_FlappyPlane", currentScore);
+
+        int highScore = ScoreManager.Instance.GetHighScore("MiniGame_FlappyPlane");
+        scoreUI?.UpdateScore(gameManager?.CurrentScore ?? 0, highScore); // 이번판 점수와 최고점수 전달
     }
 
     public void UpdateScore(int score)

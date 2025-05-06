@@ -10,18 +10,20 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
-    // 기존 UI 관련 변수들...
     public GameObject vehicleUI;
     public GameObject customizeUI;
     public GameObject leaderboardUI;
     public GameObject mapGuideUI;
     public TextMeshProUGUI mapGuideText;
 
-    // 새로 추가할 미니게임 확인 UI 관련 변수
     public GameObject miniGameConfirmUI;
     public Button miniGameConfirmYesButton;
     public Button miniGameConfirmNoButton;
     public TextMeshProUGUI miniGameConfirmText;
+
+    [Header("Leaderboard UI")]
+    public TextMeshProUGUI flappyPlaneHighScoreText;
+    public TextMeshProUGUI miniGame2HighScoreText;
 
     private string miniGameSceneName; // 시작할 미니게임 씬 이름
     private Action onMiniGameCancel;   // 취소 시 실행할 액션 (선택 사항)
@@ -51,13 +53,23 @@ public class UIManager : MonoBehaviour
         {
             miniGameConfirmNoButton.onClick.AddListener(CloseMiniGameConfirmUI);
         }
+
+        if (leaderboardUI != null) leaderboardUI.SetActive(false);
+        DontDestroyOnLoad(gameObject);
     }
 
     public void OpenVehicleUI() { if (vehicleUI != null) vehicleUI.SetActive(true); }
     public void CloseVehicleUI() { if (vehicleUI != null) vehicleUI.SetActive(false); }
     public void OpenCustomizeUI() { if (customizeUI != null) customizeUI.SetActive(true); }
     public void CloseCustomizeUI() { if (customizeUI != null) customizeUI.SetActive(false); }
-    public void OpenLeaderboard() { if (leaderboardUI != null) leaderboardUI.SetActive(true); }
+    public void OpenLeaderboard() 
+    {
+        if (leaderboardUI != null)
+        {
+            leaderboardUI.SetActive(true);
+            UpdateLeaderboardUI();
+        }
+    }
     public void CloseLeaderboard() { if (leaderboardUI != null) leaderboardUI.SetActive(false); }
     public void OpenMapGuide(string text) { if (mapGuideUI != null) { mapGuideUI.SetActive(true); mapGuideText.text = text; } }
     public void CloseMapGuide() { if (mapGuideUI != null) mapGuideUI.SetActive(false); }
@@ -100,6 +112,18 @@ public class UIManager : MonoBehaviour
             miniGameSceneName = null;
             onMiniGameCancel?.Invoke();
             onMiniGameCancel = null;
+        }
+    }
+
+    public void UpdateLeaderboardUI()
+    {
+        if(flappyPlaneHighScoreText != null)
+        {
+            flappyPlaneHighScoreText.text = ScoreManager.Instance.GetHighScore("MiniGame_FlappyPlane").ToString();
+        }
+        if(miniGame2HighScoreText != null)
+        {
+            miniGame2HighScoreText.text = ScoreManager.Instance.GetHighScore("MiniGame2Scene").ToString();
         }
     }
 }
