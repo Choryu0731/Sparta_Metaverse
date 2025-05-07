@@ -25,8 +25,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI flappyPlaneHighScoreText;
     public TextMeshProUGUI miniGame2HighScoreText;
 
-    private string miniGameSceneName; // 시작할 미니게임 씬 이름
-    private Action onMiniGameCancel;   // 취소 시 실행할 액션 (선택 사항)
+    private string miniGameSceneName;
+    private Action onMiniGameCancel;
 
     private void Awake()
     {
@@ -88,7 +88,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Yes 버튼 클릭 시 미니게임 시작
     private void StartMiniGame()
     {
         Debug.Log("StartMiniGame() 호출됨, sceneName: " + miniGameSceneName);
@@ -103,7 +102,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // No 버튼 클릭 시 미니게임 확인 UI 닫기 및 취소 액션 실행 (선택 사항)
     private void CloseMiniGameConfirmUI()
     {
         if (miniGameConfirmUI != null)
@@ -117,13 +115,15 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLeaderboardUI()
     {
-        if(flappyPlaneHighScoreText != null)
-        {
-            flappyPlaneHighScoreText.text = ScoreManager.Instance.GetHighScore("MiniGame_FlappyPlane").ToString();
-        }
-        if(miniGame2HighScoreText != null)
-        {
-            miniGame2HighScoreText.text = ScoreManager.Instance.GetHighScore("MiniGame2Scene").ToString();
-        }
+        Debug.Log("리더보드 점수 불러오기");
+
+        int flappyScore = PlayerPrefs.GetInt("FlappyPlaneHighScore", 0);
+        int miniGame2Score = PlayerPrefs.GetInt("MiniGame2HighScore", 0);
+
+        if (flappyPlaneHighScoreText != null)
+            flappyPlaneHighScoreText.text = flappyScore.ToString();
+
+        if (miniGame2HighScoreText != null)
+            miniGame2HighScoreText.text = miniGame2Score.ToString();
     }
 }

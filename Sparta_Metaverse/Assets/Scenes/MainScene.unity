@@ -3864,7 +3864,8 @@ MonoBehaviour:
   npcType: 2
   dialogueManager: {fileID: 1043077268}
   playerController: {fileID: 2056306389}
-  dialogue: []
+  dialogue:
+  - "\uB354\uC6B1 \uBE60\uB974\uAC8C \uC6C0\uC9C1\uC774\uACE0 \uC2F6\uC5B4?"
   uiToShowOnDialogueEnd: {fileID: 894491493}
 --- !u!61 &121570854
 BoxCollider2D:
@@ -4166,7 +4167,8 @@ MonoBehaviour:
   npcType: 1
   dialogueManager: {fileID: 1043077268}
   playerController: {fileID: 2056306389}
-  dialogue: []
+  dialogue:
+  - "\uBBF8\uB2C8\uAC8C\uC7842\uB294 \uC544\uC9C1 \uC900\uBE44\uC911\uC774\uC57C!"
   uiToShowOnDialogueEnd: {fileID: 1780559614}
 --- !u!61 &155704882
 BoxCollider2D:
@@ -9725,7 +9727,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC5EC\uAE30\uB294 \uB300\uD654\uCC3D \uC785\uB2C8\uB2E4."
+  m_text: Defalut
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7d49491b0c63824e85dc06696379a75, type: 2}
   m_sharedMaterial: {fileID: 6840604431356346760, guid: e7d49491b0c63824e85dc06696379a75, type: 2}
@@ -15242,7 +15244,8 @@ MonoBehaviour:
   npcType: 5
   dialogueManager: {fileID: 1043077268}
   playerController: {fileID: 2056306389}
-  dialogue: []
+  dialogue:
+  - "\uB9F5\uC758 \uAD6C\uC870\uB97C \uC54C\uB824\uC904\uAC8C!"
   uiToShowOnDialogueEnd: {fileID: 997631341}
 --- !u!61 &1674689453
 BoxCollider2D:
@@ -15689,7 +15692,8 @@ MonoBehaviour:
   npcType: 3
   dialogueManager: {fileID: 1043077268}
   playerController: {fileID: 2056306389}
-  dialogue: []
+  dialogue:
+  - "\uCE90\uB9AD\uD130\uC758 \uC678\uD615\uC744 \uBC14\uAFD4\uBCFC\uB798?"
   uiToShowOnDialogueEnd: {fileID: 1328169469}
 --- !u!61 &1888470459
 BoxCollider2D:

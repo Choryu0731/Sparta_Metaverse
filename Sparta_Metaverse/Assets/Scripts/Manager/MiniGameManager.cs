@@ -28,21 +28,12 @@ public class MiniGameManager : MonoBehaviour
         currentMiniGameScene = sceneName;
         SceneManager.LoadScene(sceneName);
     }
-
     public void EndMiniGame(int score)
     {
-        Debug.Log("MiniGameManager: Ending current mini-game.");
-        
-        string sceneName = GetCurrentMiniGameScene();
-        if(!string.IsNullOrEmpty(sceneName))
-        {
-            ScoreManager.Instance.SaveHighScore(sceneName, score);
-        }
+        UIManager.Instance?.UpdateLeaderboardUI();
 
         SceneManager.LoadScene("MainScene");
         currentMiniGameScene = null;
-
-        UIManager.Instance?.UpdateLeaderboardUI();
     }
 
     public string GetCurrentMiniGameScene()
